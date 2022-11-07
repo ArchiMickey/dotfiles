@@ -48,6 +48,10 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo copypath z zsh-aut
 Replace `.p10k.zsh`
 
 ## GNOME
+Install extension manager:
+```
+yay -S extension-manager
+```
 ### Extensions:
 [BaBar Task Bar](https://extensions.gnome.org/extension/4000/babar/) \
 [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) \
