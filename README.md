@@ -46,15 +46,16 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete
 ```
 
-6. Copy home config files
-```
-cp -r dot_home/. ~/
-```
-
-7. Download .ssh from Onedrive:
+6. Download .ssh from Onedrive:
 ```
 # Run after downloaded and extracted .ssh
 sudo chmod 600 .ssh/*
+```
+
+7. Clone this repo and copy home config files
+```
+git clone git@github.com:ArchiMickey/dotfiles.git ~/ && cd ~/dotfiles
+cp -r dot_home/. ~/
 ```
 ## Theme
 ### GTK and icon
