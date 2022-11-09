@@ -7,7 +7,10 @@ sudo vim /etc/pacman.conf
 Enable `Color`, `multilib` and `ParallelDownloads`
 1. Install yay:
 ```
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+mkdir ~/Collections
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git ~/Collections/
+cd ~/Collections/yay && makepkg -si
 ```
 2. Install drivers:
 NVIDIA:
@@ -24,8 +27,10 @@ yay -S wine-staging wine-gecko wine-mono pipewire-pulse lib32-libpulse lib32-als
 ```
 4. Install daily apps:
 ```
-yay -Syu zsh vim nano google-chrome visual-studio-code-bin tmux btop noto-cjk-fonts nerd-fonts-complete whatsapp-nativefier signal-desktop
+yay -Syu zsh vim nano kitty google-chrome visual-studio-code-bin tmux btop noto-fonts-cjk nerd-fonts-complete whatsapp-nativefier signal-desktop spotify
+flatpak install discord
 ```
+
 5. Configure zsh
 ```
 # Install oh-my-zsh
@@ -60,3 +65,39 @@ yay -S extension-manager
 [Just Perfection](https://extensions.gnome.org/extension/3843/just-perfection/) \
 [Media Controls](https://extensions.gnome.org/extension/4470/media-controls/) \
 [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
+
+## Theme
+### GTK and icon
+```
+yay -S catppuccin-gtk-theme-macchiato
+git@github.com:vinceliuice/Tela-icon-theme.git 
+```
+Change the theme in gnome tweaks
+### btop
+```
+cp btop/catppuccin_macchiato.theme ~/.config/btop/themes/
+```
+Change the theme in btop options.
+### grub
+Uncomment and edit following line in `/etc/default/grub` to selected theme:
+```
+GRUB_THEME="/usr/share/grub/themes/catppuccin-macchiato-grub-theme/theme.txt"
+```
+Update grub:
+```
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+### spicetify
+Run spotify once before executing the below command.
+```
+yay -S spicetify-cli
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+cp -r spicetify/catppuccin-macchiato ~/.config/spicetify/Extensions/
+cp spicetify/catppuccin-macchiato.js ~/.config/spicetify/Extensions/
+spicetify config current_theme catppuccin-macchiato
+spicetify config color_scheme lavender
+spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+spicetify config extensions catppuccin-macchiato.js
+spicetify backup apply
+```
