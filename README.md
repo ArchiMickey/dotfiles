@@ -45,12 +45,59 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete
 ```
-Edit `.zshrc`:
+
+6. Copy home config files
 ```
-ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo copypath z zsh-autocomplete)
+cp -r dot_home/. ~/
 ```
-Replace `.p10k.zsh`
+
+7. Download .ssh from Onedrive:
+```
+# Run after downloaded and extracted .ssh
+sudo chmod 600 .ssh/*
+```
+## Theme
+### GTK and icon
+```
+yay -S catppuccin-gtk-theme-macchiato
+git@github.com:vinceliuice/Tela-icon-theme.git 
+```
+Change the theme in gnome tweaks
+### btop
+```
+cp dot_config/btop/catppuccin_macchiato.theme ~/.config/btop/themes/
+```
+Change the theme in btop options.
+### grub
+```
+sudo cp -r grub_theme/catppuccin_macchiato /usr/share/grub/themes/
+```
+Uncomment and edit following line in `/etc/default/grub` to selected theme:
+```
+GRUB_THEME="/usr/share/grub/themes/catppuccin-macchiato-grub-theme/theme.txt"
+```
+Update grub:
+```
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+### Kitty
+```
+cp -r dot_config/kitty/* ~/.config/kitty/
+```
+### spicetify
+Run spotify once before executing the below command.
+```
+yay -S spicetify-cli
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+cp -r dot_config/spicetify/catppuccin-macchiato ~/.config/spicetify/Themes/
+cp dot_config/spicetify/catppuccin-macchiato.js ~/.config/spicetify/Extensions/
+spicetify config current_theme catppuccin-macchiato
+spicetify config color_scheme lavender
+spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+spicetify config extensions catppuccin-macchiato.js
+spicetify backup apply
+```
 
 ## GNOME
 Install extension manager:
@@ -65,39 +112,3 @@ yay -S extension-manager
 [Just Perfection](https://extensions.gnome.org/extension/3843/just-perfection/) \
 [Media Controls](https://extensions.gnome.org/extension/4470/media-controls/) \
 [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
-
-## Theme
-### GTK and icon
-```
-yay -S catppuccin-gtk-theme-macchiato
-git@github.com:vinceliuice/Tela-icon-theme.git 
-```
-Change the theme in gnome tweaks
-### btop
-```
-cp btop/catppuccin_macchiato.theme ~/.config/btop/themes/
-```
-Change the theme in btop options.
-### grub
-Uncomment and edit following line in `/etc/default/grub` to selected theme:
-```
-GRUB_THEME="/usr/share/grub/themes/catppuccin-macchiato-grub-theme/theme.txt"
-```
-Update grub:
-```
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-```
-### spicetify
-Run spotify once before executing the below command.
-```
-yay -S spicetify-cli
-sudo chmod a+wr /opt/spotify
-sudo chmod a+wr /opt/spotify/Apps -R
-cp -r spicetify/catppuccin-macchiato ~/.config/spicetify/Extensions/
-cp spicetify/catppuccin-macchiato.js ~/.config/spicetify/Extensions/
-spicetify config current_theme catppuccin-macchiato
-spicetify config color_scheme lavender
-spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
-spicetify config extensions catppuccin-macchiato.js
-spicetify backup apply
-```
