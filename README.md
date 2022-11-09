@@ -107,6 +107,11 @@ Install extension manager:
 yay -S extension-manager
 ```
 ### Extensions:
+Setup Extensions Sync first, it will sync the extensions automatically\
+[Extensions Sync](https://extensions.gnome.org/extension/1486/extensions-sync/)\
+gist_id: be6312204bc74a3b2596394ce24123ce \
+gist_token: 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 \
+#### Using Extensions:
 [BaBar Task Bar](https://extensions.gnome.org/extension/4000/babar/) \
 [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) \
 [Dash to Dock for COSMIC](https://extensions.gnome.org/extension/5004/dash-to-dock-for-cosmic/) \
