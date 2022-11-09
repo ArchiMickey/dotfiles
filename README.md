@@ -65,6 +65,10 @@ git clone git@github.com:vinceliuice/Tela-icon-theme.git ~/Collections/
 cd Collections/Tela-icon-theme && ./install.sh
 ```
 Change the theme and icons in gnome tweaks
+### background
+```
+cp background/* ~/.local/share/background/
+```
 ### btop
 ```
 cp dot_config/btop/catppuccin_macchiato.theme ~/.config/btop/themes/
