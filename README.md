@@ -114,7 +114,11 @@ yay -S extension-manager
 Setup Extensions Sync first, it will sync the extensions automatically\
 [Extensions Sync](https://extensions.gnome.org/extension/1486/extensions-sync/)\
 gist_id: be6312204bc74a3b2596394ce24123ce \
-gist_token: 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 \
+gist_token: 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
+For 4K monitor, change the text size:
+```
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
+```
 #### Using Extensions:
 [BaBar Task Bar](https://extensions.gnome.org/extension/4000/babar/) \
 [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) \
