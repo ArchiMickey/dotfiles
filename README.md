@@ -9,13 +9,13 @@ Enable `Color`, `multilib` and `ParallelDownloads`
 ```
 mkdir ~/Collections
 sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay.git ~/Collections/
+git clone https://aur.archlinux.org/yay.git ~/Collections/yay
 cd ~/Collections/yay && makepkg -si
 ```
 2. Install drivers:
 NVIDIA:
 ```
-yay -S cuda cuda-tools nvidia nvidia-utils lib32-nvidia
+yay -S cuda cuda-tools nvidia nvidia-utils lib32-nvidia-utils
 ```
 Others:
 ```
@@ -27,8 +27,7 @@ yay -S wine-staging wine-gecko wine-mono pipewire-pulse lib32-libpulse lib32-als
 ```
 4. Install daily apps:
 ```
-yay -Syu zsh vim nano kitty google-chrome visual-studio-code-bin tmux btop noto-fonts-cjk nerd-fonts-complete whatsapp-nativefier signal-desktop spotify
-flatpak install discord
+yay -Syu zsh vim nano kitty google-chrome visual-studio-code-bin tmux btop noto-fonts-cjk nerd-fonts-complete whatsapp-nativefier signal-desktop spotify discord
 ```
 
 5. Configure zsh
@@ -44,6 +43,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete
+git clone git@github.com:conda-incubator/conda-zsh-completion.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/conda-zsh-completion
 ```
 
 6. Download .ssh from Onedrive:
@@ -57,12 +57,35 @@ sudo chmod 600 .ssh/*
 git clone git@github.com:ArchiMickey/dotfiles.git ~/ && cd ~/dotfiles
 cp -r dot_home/. ~/
 ```
+
+## Environment
+Install micromamba:
+```
+curl micro.mamba.pm/install.sh | zsh
+zsh
+micromamba activate
+micromamba install conda -c conda-forge
+```
+
+Install Rime:
+1. Install packages:
+```
+yay -S ibus ibus-rime
+```
+2. Add environment variables to `/etc/environment`
+```
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS=@im=ibus
+```
+
+
 ## Theme
 ### GTK and icon
 ```
 yay -S catppuccin-gtk-theme-macchiato
-git clone git@github.com:vinceliuice/Tela-icon-theme.git ~/Collections/
-cd Collections/Tela-icon-theme && ./install.sh
+git clone git@github.com:vinceliuice/Tela-icon-theme.git ~/Collections/Tela-icon-theme
+cd ~/Collections/Tela-icon-theme && ./install.sh
 ```
 Change the theme and icons in gnome tweaks
 ### background
@@ -106,25 +129,44 @@ spicetify backup apply
 ```
 
 ## GNOME
-Install extension manager:
-```
-yay -S extension-manager
-```
-### Extensions:
-Setup Extensions Sync first, it will sync the extensions automatically\
-[Extensions Sync](https://extensions.gnome.org/extension/1486/extensions-sync/)\
-gist_id: be6312204bc74a3b2596394ce24123ce \
-gist_token: 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 \
-
 For 4K monitor, change the text size:
 ```
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
 ```
+Install extension manager:
+```
+yay -S extension-manager
+```
+Disable extension gnome version check:
+```
+gsettings set org.gnome.shell disable-extension-version-validation true
+```
+### Extensions:
+Setup Extensions Sync first, it will sync the extensions automatically\
+[Extensions Sync](https://extensions.gnome.org/extension/1486/extensions-sync/)\
+gist_id: 93e973b19d38f4e738cb5aed92048bc1 \
+gist_token: regenerate at [here](https://github.com/settings/tokens/1032391511)
+
 #### Using Extensions:
 [BaBar Task Bar](https://extensions.gnome.org/extension/4000/babar/) \
 [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) \
-[Dash to Dock for COSMIC](https://extensions.gnome.org/extension/5004/dash-to-dock-for-cosmic/) \
-[GTK Title Bar](https://extensions.gnome.org/extension/1732/gtk-title-bar/) \
+[Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/) \
 [Just Perfection](https://extensions.gnome.org/extension/3843/just-perfection/) \
 [Media Controls](https://extensions.gnome.org/extension/4470/media-controls/) \
+[Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) \
+[Tiling Assistant](https://extensions.gnome.org/extension/3733/tiling-assistant/) \
 [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
+
+## Nvidia
+Nvidia sucks
+```
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable nvidia-hibernate.service
+sudo cp nvidia/nvidia-power-management.conf /etc/modprobe.d/nvidia-power-management.conf
+```
+
+## X11
+```
+sudo nvidia-xconfig --cool-bits=28
+sudo cp nvidia/X11/Xwrapper.config /etc/X11/Xwrapper.config
+```

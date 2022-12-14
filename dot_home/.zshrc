@@ -77,7 +77,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo copypath z zsh-autocomplete)
+source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
+
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo copypath z zsh-autocomplete conda-zsh-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,23 +114,19 @@ source $ZSH/oh-my-zsh.sh
 
 alias s="kitty +kitten ssh"
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/archimickey/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="/home/archimickey/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="/home/archimickey/micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+    eval "$__mamba_setup"
 else
-    if [ -f "/home/archimickey/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/archimickey/mambaforge/etc/profile.d/conda.sh"
+    if [ -f "/home/archimickey/micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "/home/archimickey/micromamba/etc/profile.d/micromamba.sh"
     else
-        export PATH="/home/archimickey/mambaforge/bin:$PATH"
+        export  PATH="/home/archimickey/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
     fi
 fi
-unset __conda_setup
-
-if [ -f "/home/archimickey/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/archimickey/mambaforge/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
+unset __mamba_setup
+# <<< mamba initialize <<<
