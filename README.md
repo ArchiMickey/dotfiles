@@ -140,13 +140,13 @@ Disable extension gnome version check:
 ```
 gsettings set org.gnome.shell disable-extension-version-validation true
 ```
-### Extensions:
+## Extensions:
 Setup Extensions Sync first, it will sync the extensions automatically\
 [Extensions Sync](https://extensions.gnome.org/extension/1486/extensions-sync/)\
 gist_id: 93e973b19d38f4e738cb5aed92048bc1 \
 gist_token: regenerate at [here](https://github.com/settings/tokens/1032391511)
 
-#### Using Extensions:
+### Using Extensions:
 [BaBar Task Bar](https://extensions.gnome.org/extension/4000/babar/) \
 [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) \
 [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/) \
@@ -157,7 +157,7 @@ gist_token: regenerate at [here](https://github.com/settings/tokens/1032391511)
 [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
 
 ## Mouse
-RGB for razer mouse:
+### RGB for razer mouse:
 ```
 yay -S linux-headers openrazer-meta
 suod gpasswd -a $USER plugdev
@@ -165,7 +165,7 @@ yay -S polychromatic
 ```
 Relogin to apply the changes.
 
-Logitech mouse:
+### Logitech mouse:
 ```
 yay -S solaar
 ```
