@@ -79,7 +79,6 @@ QT_IM_MODULE=ibus
 XMODIFIERS=@im=ibus
 ```
 
-
 ## Theme
 ### GTK and icon
 ```
@@ -156,6 +155,20 @@ gist_token: regenerate at [here](https://github.com/settings/tokens/1032391511)
 [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) \
 [Tiling Assistant](https://extensions.gnome.org/extension/3733/tiling-assistant/) \
 [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
+
+## Mouse
+RGB for razer mouse:
+```
+yay -S linux-headers openrazer-meta
+suod gpasswd -a $USER plugdev
+yay -S polychromatic
+```
+Relogin to apply the changes.
+
+Logitech mouse:
+```
+yay -S solaar
+```
 
 ## Nvidia
 Nvidia sucks
