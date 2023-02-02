@@ -145,6 +145,10 @@ Disable extension gnome version check:
 ```
 gsettings set org.gnome.shell disable-extension-version-validation true
 ```
+Install gesture daemon for laptop:
+```
+yay -S gnome-x11-gesture-daemon
+```
 ## Extensions:
 Setup Extensions Sync first, it will sync the extensions automatically.\
 Laptop and desktop gists are separated now.\
