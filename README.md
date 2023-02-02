@@ -25,9 +25,10 @@ yay -S mesa lib32-mesa vulkan-radeon amdvlk
 ```
 yay -S wine-staging wine-gecko wine-mono pipewire-pulse lib32-libpulse lib32-alsa-lib lib32-alsa-plugins
 ```
-4. Install daily apps:
+4. Install daily apps and fonts:
 ```
-yay -Syu zsh vim nano kitty google-chrome visual-studio-code-bin tmux btop noto-fonts-cjk nerd-fonts-complete whatsapp-nativefier signal-desktop spotify discord
+yay -Syu zsh vim nano kitty google-chrome visual-studio-code-bin tmux btop whatsapp-nativefier signal-desktop spotify discord kuro-bin ulauncher
+yay -S ttf-meslo-nerd noto-fonts-cjk
 ```
 
 5. Configure zsh
@@ -54,7 +55,7 @@ sudo chmod 600 .ssh/*
 
 7. Clone this repo and copy home config files
 ```
-git clone git@github.com:ArchiMickey/dotfiles.git ~/ && cd ~/dotfiles
+git clone git@github.com:ArchiMickey/dotfiles.git ~/dotfiles && cd ~/dotfiles
 cp -r dot_home/. ~/
 ```
 
@@ -112,6 +113,10 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 cp -r dot_config/kitty/* ~/.config/kitty/
 ```
+### Ulauncher
+```
+cp -r dot_config/ulauncer/* ~/.config/ulauncher/
+```
 ### spicetify
 Run spotify once before executing the below command.
 ```
@@ -141,9 +146,11 @@ Disable extension gnome version check:
 gsettings set org.gnome.shell disable-extension-version-validation true
 ```
 ## Extensions:
-Setup Extensions Sync first, it will sync the extensions automatically\
+Setup Extensions Sync first, it will sync the extensions automatically.\
+Laptop and desktop gists are separated now.\
 [Extensions Sync](https://extensions.gnome.org/extension/1486/extensions-sync/)\
-gist_id: 93e973b19d38f4e738cb5aed92048bc1 \
+gist_id(desktop): 93e973b19d38f4e738cb5aed92048bc1 \
+gist_id(laptop): 79c975baca86b82659994e055930334f \
 gist_token: regenerate at [here](https://github.com/settings/tokens/1032391511)
 
 ### Using Extensions:
@@ -176,6 +183,11 @@ Nvidia sucks
 sudo systemctl enable nvidia-suspend.service
 sudo systemctl enable nvidia-hibernate.service
 sudo cp nvidia/nvidia-power-management.conf /etc/modprobe.d/nvidia-power-management.conf
+```
+And add the kernel parameter `nvidia-drm.modeset=1` to `/etc/default/grub` and update grub. \
+May need this for gdm:
+```
+ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 ```
 
 ## X11
