@@ -114,6 +114,10 @@ source $ZSH/oh-my-zsh.sh
 
 alias s="kitty +kitten ssh"
 
+export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
+export PATH=/opt/cuda/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
+
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
 export MAMBA_EXE="/home/archimickey/.local/bin/micromamba";
@@ -130,3 +134,4 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
